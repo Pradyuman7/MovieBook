@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:id="@+id/imageview_poster"
+        android:layout_width="40dip"
+        android:layout_height="60dip"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        />
+    <TextView
+        android:id="@+id/textview_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:padding="6dip"
+        style="@style/MovieYear"
+        android:layout_centerVertical="true"
+        />
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@id/imageview_poster"
+        android:layout_toRightOf="@id/imageview_poster"
+        android:layout_toStartOf="@id/textview_year"
+        android:layout_toLeftOf="@id/textview_year"
+        android:layout_alignBaseline="@id/textview_year"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:padding="6dip"
+        style="@style/MovieTitle"
+        android:layout_centerVertical="true"
+        />
+    <!-- TODO: Rating -->
+</RelativeLayout>

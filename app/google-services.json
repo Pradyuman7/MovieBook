@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "389050993124",
+    "firebase_url": "https://nextmovie-e4ae9.firebaseio.com",
+    "project_id": "nextmovie-e4ae9",
+    "storage_bucket": "nextmovie-e4ae9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389050993124:android:7fa06bdc7ca63459",
+        "android_client_info": {
+          "package_name": "com.pd.nextmovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389050993124-062d0kk3laks14b4ins1p6dmqmma827a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pd.nextmovie",
+            "certificate_hash": "d5df210d11231a2288db7de65b8d614d98051dce"
+          }
+        },
+        {
+          "client_id": "389050993124-12r3ojma0ajcppehanab74rl1lvcd5lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEJuBhjgZaVdriqvjpfFzShok3uoAeVWE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389050993124-12r3ojma0ajcppehanab74rl1lvcd5lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
