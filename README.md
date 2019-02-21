@@ -1,5 +1,7 @@
 # Next-Movie
 
+[![Next Movie](https://img.shields.io/badge/Pradyuman7-Next_Movie-red.svg?style=plastic)](https://github.com/Pradyuman7/Next-Movie)
+
 An android app that lets you search from a big database of movies and their cast, and recommends movies according to your taste
 
 <p align="center">
