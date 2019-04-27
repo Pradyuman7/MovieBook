@@ -29,4 +29,10 @@
     <string name="login">Sign In With Google</string>
     <string name="logout">Logout</string>
     <string name="set_favourite_movie">Set favourite movie</string>
+
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="sign_up">Sign up</string>
+
+
 </resources>
