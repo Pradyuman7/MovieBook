@@ -58,6 +58,8 @@ public class FullscreenActivity extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser() != null){
                     Toast.makeText(FullscreenActivity.this, "Already Signed In", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(FullscreenActivity.this, MovieTabActivity.class));
+                    finish();
+                    finish();
                 }
             }
         };
@@ -120,9 +122,9 @@ public class FullscreenActivity extends AppCompatActivity {
                     FirebaseUser fUser = mAuth.getCurrentUser();
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                     assert fUser != null;
+
                     User user = new User(fUser.getDisplayName(),"Currently not set");
                     ref.child("users").child(fUser.getUid()).setValue(user);
-
                 }
                 else{
                     Log.w("TAG","SignInWithCredential: failure", task.getException());

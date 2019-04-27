@@ -3,26 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/back"
     android:layout_height="match_parent"
     tools:context=".FullscreenActivity">
 
     <com.google.android.gms.common.internal.SignInButtonImpl
         android:id="@+id/GButton"
-        android:layout_width="301dp"
-        android:layout_height="72dp"
+        android:layout_width="309dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="48dp"
         android:layout_marginEnd="56dp"
         android:layout_marginLeft="41dp"
         android:layout_marginRight="56dp"
         android:layout_marginStart="41dp"
         android:layout_marginTop="391dp"
+        android:background="@drawable/buttons"
         android:text="@string/login"
+        android:textColor="#cdc8c9"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="209dp"
+        android:layout_height="159dp"
+        android:layout_marginBottom="190dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginRight="87dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="53dp"
+        app:layout_constraintBottom_toTopOf="@+id/GButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/icon" />
 
 </android.support.constraint.ConstraintLayout>

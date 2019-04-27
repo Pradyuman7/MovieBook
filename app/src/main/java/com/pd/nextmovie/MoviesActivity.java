@@ -1,17 +1,11 @@
 package com.pd.nextmovie;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.algolia.instantsearch.core.helpers.Searcher;
 import com.algolia.instantsearch.ui.viewmodels.SearchBoxViewModel;
@@ -29,7 +23,7 @@ public abstract class MoviesActivity extends AppCompatActivity {
     protected Searcher searcherMovies;
     protected Searcher searcherActors;
     protected SearchBoxViewModel searchBoxViewModel;
-    private FirebaseAuth.AuthStateListener mAL;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private SearchBox searchBox;
 
 
@@ -54,19 +48,11 @@ public abstract class MoviesActivity extends AppCompatActivity {
         this.<FloatingActionButton>findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(firebaseAuth.getCurrentUser() != null)
+                    startActivity(new Intent(MoviesActivity.this, Recommend.class));
 
-                mAL = new FirebaseAuth.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                        if(firebaseAuth.getCurrentUser() != null){
-                            startActivity(new Intent(MoviesActivity.this, Recommend.class));
-                        }
-                        else
-                            startActivity(new Intent(MoviesActivity.this, FullscreenActivity.class));
-                    }
-                };
-
-
+                else
+                    startActivity(new Intent(MoviesActivity.this, FullscreenActivity.class));
             }
         });
         if (searchBoxViewModel == null) {

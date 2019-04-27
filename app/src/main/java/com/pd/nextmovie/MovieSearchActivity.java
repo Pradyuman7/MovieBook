@@ -29,7 +29,7 @@ public class MovieSearchActivity extends AppCompatActivity implements AbsListVie
         setContentView(R.layout.activity_movie_search);
 
         // Bind UI components.
-        (moviesListView = (ResultsListView) findViewById(R.id.listview_movies)).setOnScrollListener(this);
+        (moviesListView = findViewById(R.id.listview_movies)).setOnScrollListener(this);
 
         // Init Algolia.
         Client client = new Client("latency", "dce4286c2833e8cf4b7b1f2d3fa1dbcb");

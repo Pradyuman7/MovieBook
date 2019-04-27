@@ -27,4 +27,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="login">Sign In With Google</string>
+    <string name="logout">Logout</string>
+    <string name="set_favourite_movie">Set favourite movie</string>
 </resources>
