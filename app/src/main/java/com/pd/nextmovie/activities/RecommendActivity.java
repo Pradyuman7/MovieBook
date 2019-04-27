@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.pd.nextmovie.R;
 
-public class Recommend extends AppCompatActivity {
+public class RecommendActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class Recommend extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Recommend.this, MovieTabActivity.class));
+                startActivity(new Intent(RecommendActivity.this, MoviesActivity.MovieTabActivity.class));
                 finish();
                 finish();
                 return true;

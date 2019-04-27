@@ -1,4 +1,6 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.data;
+
+import com.pd.nextmovie.model.Highlight;
 
 import java.util.HashMap;
 import java.util.Map;

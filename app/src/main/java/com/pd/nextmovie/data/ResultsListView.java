@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.data;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -7,6 +7,8 @@ import android.widget.ListView;
 
 import com.algolia.instantsearch.core.model.AlgoliaResultsListener;
 import com.algolia.instantsearch.core.model.SearchResults;
+import com.pd.nextmovie.R;
+import com.pd.nextmovie.model.Movie;
 
 import java.util.List;
 
@@ -22,14 +24,14 @@ public class ResultsListView extends ListView implements AlgoliaResultsListener 
 
     @Override public void onResults(@NonNull SearchResults results, boolean isLoadingMore) {
         if (!isLoadingMore) {
-            List<HighlightedResult<com.pd.nextmovie.Movie>> resultList = resultsParser.parseResults(results.content);
+            List<HighlightedResult<Movie>> resultList = resultsParser.parseResults(results.content);
             adapter.clear();
             adapter.addAll(resultList);
             // Scroll the list back to the top.
             smoothScrollToPosition(0);
         }
         else {
-            List<HighlightedResult<com.pd.nextmovie.Movie>> resultList = resultsParser.parseResults(results.content);
+            List<HighlightedResult<Movie>> resultList = resultsParser.parseResults(results.content);
             adapter.addAll(resultList);
         }
     }

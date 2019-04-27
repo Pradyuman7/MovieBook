@@ -1,9 +1,11 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.activity_back;
 
 
 import android.os.Bundle;
 
 import com.algolia.instantsearch.ui.helpers.InstantSearch;
+import com.pd.nextmovie.R;
+import com.pd.nextmovie.activities.MoviesActivity;
 
 public class MoviesSectionActivity extends MoviesActivity {
     @Override

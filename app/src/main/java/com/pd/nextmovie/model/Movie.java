@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.model;
 
 public class Movie {
     private String title;

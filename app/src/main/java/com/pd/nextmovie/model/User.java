@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.model;
 
 import java.util.ArrayList;
 

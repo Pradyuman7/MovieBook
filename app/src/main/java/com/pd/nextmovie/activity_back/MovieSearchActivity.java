@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.activity_back;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import com.algolia.instantsearch.core.helpers.Searcher;
 import com.algolia.instantsearch.ui.helpers.InstantSearch;
 import com.algolia.search.saas.Client;
 import com.algolia.search.saas.Query;
+import com.pd.nextmovie.R;
+import com.pd.nextmovie.data.ResultsListView;
 
 
 public class MovieSearchActivity extends AppCompatActivity implements AbsListView.OnScrollListener {

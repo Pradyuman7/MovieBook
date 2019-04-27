@@ -1,4 +1,6 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.data;
+
+import com.pd.nextmovie.model.Movie;
 
 import org.json.JSONObject;
 

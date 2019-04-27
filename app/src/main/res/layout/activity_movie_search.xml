@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pd.nextmovie.MovieSearchActivity"
+    tools:context="com.pd.nextmovie.activity_back.MovieSearchActivity"
     >
-    <com.pd.nextmovie.ResultsListView
+    <com.pd.nextmovie.data.ResultsListView
         android:id="@+id/listview_movies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

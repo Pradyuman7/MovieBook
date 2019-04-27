@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/back"
     android:layout_height="match_parent"
-    tools:context=".FullscreenActivity">
+    tools:context=".activities.RegisterActivity">
 
     <com.google.android.gms.common.internal.SignInButtonImpl
         android:id="@+id/GButton"

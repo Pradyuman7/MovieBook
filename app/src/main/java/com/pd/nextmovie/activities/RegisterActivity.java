@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -24,9 +24,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.pd.nextmovie.R;
+import com.pd.nextmovie.model.User;
 
 
-public class FullscreenActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
@@ -45,7 +47,7 @@ public class FullscreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fullscreen);
+        setContentView(R.layout.activity_register);
         gb = findViewById(R.id.GButton);
 
         setTitle("Sign In");
@@ -56,8 +58,8 @@ public class FullscreenActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null){
-                    Toast.makeText(FullscreenActivity.this, "Already Signed In", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(FullscreenActivity.this, MovieTabActivity.class));
+                    Toast.makeText(RegisterActivity.this, "Already Signed In", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(RegisterActivity.this, MoviesActivity.MovieTabActivity.class));
                     finish();
                     finish();
                 }
@@ -72,7 +74,7 @@ public class FullscreenActivity extends AppCompatActivity {
                     signIn();
                 }
                 catch(NullPointerException e) {
-                    Toast.makeText(FullscreenActivity.this,"Null Reference ",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"Null Reference ",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -82,7 +84,7 @@ public class FullscreenActivity extends AppCompatActivity {
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
             @Override
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                Toast.makeText(FullscreenActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
             }
         }).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
 
@@ -106,7 +108,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(account);
             }
             else{
-                Toast.makeText(FullscreenActivity.this,"Auth went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this,"Auth went wrong",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -128,7 +130,7 @@ public class FullscreenActivity extends AppCompatActivity {
                 }
                 else{
                     Log.w("TAG","SignInWithCredential: failure", task.getException());
-                    Toast.makeText(FullscreenActivity.this,"Authentication failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"Authentication failed", Toast.LENGTH_SHORT).show();
 
                 }
             }

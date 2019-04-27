@@ -1,4 +1,4 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.data;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,6 +13,10 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.pd.nextmovie.R;
+import com.pd.nextmovie.data.HighlightRenderer;
+import com.pd.nextmovie.data.HighlightedResult;
+import com.pd.nextmovie.model.Movie;
 
 import java.util.Collection;
 

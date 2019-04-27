@@ -1,10 +1,12 @@
-package com.pd.nextmovie;
+package com.pd.nextmovie.data;
 
 import android.content.Context;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
+
+import com.pd.nextmovie.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

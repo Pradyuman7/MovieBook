@@ -16,7 +16,7 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MovieTabActivity">
+        <activity android:name=".activities.MoviesActivity$MovieTabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,17 +24,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MovieSearchActivity"
+            android:name=".activity_back.MovieSearchActivity"
             android:label="@string/title_activity_movie_tab"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MoviesActivity" />
-        <activity android:name=".MoviesSectionActivity" />
+        <activity android:name=".activity_back.MoviesSectionActivity" />
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".activities.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".Recommend"></activity>
+        <activity android:name=".activities.RecommendActivity"></activity>
     </application>
 
 </manifest>
