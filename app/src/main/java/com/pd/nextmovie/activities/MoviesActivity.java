@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import android.view.ViewGroup;
 import com.algolia.instantsearch.core.helpers.Searcher;
 import com.algolia.instantsearch.ui.helpers.InstantSearch;
 import com.algolia.instantsearch.ui.viewmodels.SearchBoxViewModel;
-import com.algolia.instantsearch.ui.views.Hits;
 import com.algolia.instantsearch.ui.views.SearchBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pd.nextmovie.R;
@@ -116,10 +114,15 @@ public abstract class MoviesActivity extends AppCompatActivity {
 
             // link the Searcher to the Fragment's UI
             new InstantSearch(this, searcher, layoutFragment).registerSearchView(this, searchBoxViewModel);
+
+            // this is the place where you need to add listeners
+
+
             // Show results for empty query (on app launch) / voice query (from intent)
             searcher.search(getIntent());
             // If the activity was started with an intent, apply any query it contains
             setQueryFromIntent(getIntent());
+
         }
 
         public static abstract class LayoutFragment extends Fragment {
@@ -158,7 +161,6 @@ public abstract class MoviesActivity extends AppCompatActivity {
             @Override
             public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
                 super.onViewCreated(view, savedInstanceState);
-
             }
         }
 

@@ -46,6 +46,7 @@ class MovieAdapter extends ArrayAdapter<HighlightedResult<Movie>> {
         highlightRenderer = new HighlightRenderer(context);
     }
 
+    @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View cell = convertView;

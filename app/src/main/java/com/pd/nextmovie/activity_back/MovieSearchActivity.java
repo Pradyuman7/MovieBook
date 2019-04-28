@@ -3,7 +3,11 @@ package com.pd.nextmovie.activity_back;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.algolia.instantsearch.core.helpers.Searcher;
 
@@ -15,8 +19,6 @@ import com.pd.nextmovie.data.ResultsListView;
 
 
 public class MovieSearchActivity extends AppCompatActivity implements AbsListView.OnScrollListener {
-    // UI:
-    private ResultsListView moviesListView;
 
     // Constants
     private static final int LOAD_MORE_THRESHOLD = 5;
@@ -31,6 +33,8 @@ public class MovieSearchActivity extends AppCompatActivity implements AbsListVie
         setContentView(R.layout.activity_movie_search);
 
         // Bind UI components.
+        // UI:
+        ResultsListView moviesListView;
         (moviesListView = findViewById(R.id.listview_movies)).setOnScrollListener(this);
 
         // Init Algolia.
@@ -40,6 +44,21 @@ public class MovieSearchActivity extends AppCompatActivity implements AbsListVie
 
         // Pre-build query.
         searcher.setQuery(new Query().setAttributesToRetrieve("title", "image", "rating", "year").setAttributesToHighlight("title").setHitsPerPage(HITS_PER_PAGE));
+
+        moviesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Object object = adapterView.getAdapter().getItem(i);
+                Toast.makeText(MovieSearchActivity.this,"You clicked "+object.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        moviesListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MovieSearchActivity.this,"You clicked ", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override public boolean onCreateOptionsMenu(Menu menu) {
