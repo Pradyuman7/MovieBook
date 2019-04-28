@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
     android:background="@drawable/wall"
-    app:title="@string/app_name"
     tools:context=".activities.RegisterActivity">
 
 
@@ -16,35 +15,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"/>
-
-    <com.google.android.gms.common.internal.SignInButtonImpl
-        android:id="@+id/GButton1"
-        android:layout_width="350dp"
-        android:fontFamily="@font/gotham"
-        android:layout_height="60dp"
-        android:textAllCaps="false"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/text"
-        android:text="@string/sign_in_with_google"
-        android:textColor="#cdc8c9"
-        android:textSize="20sp"/>
-
-    <LinearLayout
-        android:id="@+id/space"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/GButton1"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:orientation="horizontal"/>
 
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/icon"
-        android:layout_below="@+id/space"
+        android:layout_below="@+id/linearLayout"
         android:layout_centerHorizontal="true"/>
 
 
@@ -140,6 +118,7 @@
 
 
         <TextView
+            android:id="@+id/forgot_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -149,6 +128,29 @@
             android:textColor="#96ffffff"
             android:textSize="16sp" />
 
+        <LinearLayout
+            android:id="@+id/space2"
+            android:layout_below="@+id/forgot_password"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"/>
+
+
+        <com.google.android.gms.common.internal.SignInButtonImpl
+            android:id="@+id/GButton1"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/calibri"
+            android:layout_height="60dp"
+            android:textAllCaps="false"
+            android:layout_below="@+id/space2"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/buttonbg"
+            android:text="@string/sign_in_with_google"
+            android:textColor="#cdc8c9"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 

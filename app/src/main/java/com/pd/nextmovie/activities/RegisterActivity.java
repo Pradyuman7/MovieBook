@@ -1,6 +1,7 @@
 package com.pd.nextmovie.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -48,13 +50,13 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
+    private TextView forgotPassword;
     private final static int RC_SIGN_IN = 1;
     private FirebaseAuth.AuthStateListener mAL;
 
     @Override
     protected void onStart(){
         super.onStart();
-
         mAuth.addAuthStateListener(mAL);
     }
 
@@ -65,8 +67,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.forgot_password);
         Button signUp = findViewById(R.id.signup);
         Button signIn = findViewById(R.id.signin);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChocoBar.builder().setActivity(RegisterActivity.this).setText("Try signing in with Google").centerText().setDuration(ChocoBar.LENGTH_SHORT).setBackgroundColor(Color.TRANSPARENT).build().show();
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -190,6 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonEffect(v);
                 try {
                     signIn();
                 }
