@@ -26,6 +26,9 @@ import com.algolia.instantsearch.ui.views.Hits;
 import com.algolia.instantsearch.ui.views.SearchBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pd.nextmovie.R;
+import com.pd.nextmovie.fragments.CastFragment;
+import com.pd.nextmovie.fragments.ForYouFragment;
+import com.pd.nextmovie.fragments.MoviesFragment;
 
 import java.util.Objects;
 
@@ -139,26 +142,6 @@ public abstract class MoviesActivity extends AppCompatActivity {
             }
         }
 
-        public static class MoviesFragment extends LayoutFragment {
-            public MoviesFragment() {
-                super(R.layout.fragment_movies);
-            }
-        }
-
-        public static class ActorsFragment extends LayoutFragment {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-                super.onViewCreated(view, savedInstanceState);
-                Objects.requireNonNull(getActivity()).<Hits>findViewById(R.id.hits_movies).addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
-            }
-
-            public ActorsFragment() {
-                super(R.layout.fragment_actors);
-            }
-        }
-
-
         public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
             SectionsPagerAdapter(FragmentManager fm) {
@@ -172,7 +155,7 @@ public abstract class MoviesActivity extends AppCompatActivity {
                     case 0:
                         return new MoviesFragment();
                     default:
-                        return new ActorsFragment();
+                        return new ForYouFragment();
                 }
             }
 

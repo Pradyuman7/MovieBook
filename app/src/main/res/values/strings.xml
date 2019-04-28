@@ -33,6 +33,7 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_up">Sign up</string>
+    <string name="for_you">For You</string>
 
 
 </resources>

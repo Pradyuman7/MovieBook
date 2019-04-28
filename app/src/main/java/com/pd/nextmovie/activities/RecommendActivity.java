@@ -18,8 +18,6 @@ public class RecommendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommend);
 
 
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
