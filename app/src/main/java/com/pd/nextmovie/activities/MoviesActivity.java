@@ -142,6 +142,26 @@ public abstract class MoviesActivity extends AppCompatActivity {
             }
         }
 
+        public static abstract class LayoutFragmentWithoutAlgolia extends Fragment {
+            private final int layout;
+
+            public LayoutFragmentWithoutAlgolia(@LayoutRes int layout) {
+                this.layout = layout;
+            }
+
+            @Override
+            public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+                return inflater.inflate(layout, container, false);
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+                super.onViewCreated(view, savedInstanceState);
+
+            }
+        }
+
         public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
             SectionsPagerAdapter(FragmentManager fm) {
@@ -154,6 +174,8 @@ public abstract class MoviesActivity extends AppCompatActivity {
                 switch (position) {
                     case 0:
                         return new MoviesFragment();
+                    case 1:
+                        return new CastFragment();
                     default:
                         return new ForYouFragment();
                 }
@@ -161,7 +183,7 @@ public abstract class MoviesActivity extends AppCompatActivity {
 
             @Override
             public int getCount() {
-                return 2;
+                return 3;
             }
         }
     }

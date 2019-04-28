@@ -10,9 +10,9 @@ import android.view.View;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
 
-public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragment {
+public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
-        super(R.layout.fragment_movies);
+        super(R.layout.fragment_for_you);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

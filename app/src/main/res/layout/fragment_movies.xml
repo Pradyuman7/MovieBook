@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pd.nextmovie.activities.MoviesActivity$MovieTabActivity$MoviesFragment">
+    tools:context="com.pd.nextmovie.fragments$MoviesFragment">
 
     <com.algolia.instantsearch.ui.views.Hits
         android:id="@+id/hits_movies"

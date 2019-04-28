@@ -50,7 +50,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private FirebaseAuth mAuth;
-    private TextView forgotPassword;
     private final static int RC_SIGN_IN = 1;
     private FirebaseAuth.AuthStateListener mAL;
 
@@ -67,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        forgotPassword = findViewById(R.id.forgot_password);
+        TextView forgotPassword = findViewById(R.id.forgot_password);
         Button signUp = findViewById(R.id.signup);
         Button signIn = findViewById(R.id.signin);
 

@@ -1,7 +1,5 @@
 package com.pd.nextmovie.data;
 
-import com.pd.nextmovie.data.HighlightedResult;
-import com.pd.nextmovie.data.MovieJsonParser;
 import com.pd.nextmovie.model.Highlight;
 import com.pd.nextmovie.model.Movie;
 
@@ -11,11 +9,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultsJsonParser {
+class SearchResultsJsonParser {
     private MovieJsonParser movieParser = new MovieJsonParser();
 
 
-    public List<HighlightedResult<Movie>> parseResults(JSONObject jsonObject) {
+    List<HighlightedResult<Movie>> parseResults(JSONObject jsonObject) {
         if (jsonObject == null) return null;
 
         List<HighlightedResult<Movie>> results = new ArrayList<>();
@@ -27,16 +25,20 @@ public class SearchResultsJsonParser {
             if (hit == null) continue;
 
             Movie movie = movieParser.parse(hit);
-            if (movie == null) continue;
+            if (movie == null)
+                continue;
 
             JSONObject highlightResult = hit.optJSONObject("_highlightResult");
-            if (highlightResult == null) continue;
+            if (highlightResult == null)
+                continue;
 
             JSONObject highlightTitle = highlightResult.optJSONObject("title");
-            if (highlightTitle == null) continue;
+            if (highlightTitle == null)
+                continue;
 
             String value = highlightTitle.optString("value");
-            if (value == null) continue;
+            if (value == null)
+                continue;
 
             HighlightedResult<Movie> result = new HighlightedResult<>(movie);
             result.addHighlight("title", new Highlight("title", value));

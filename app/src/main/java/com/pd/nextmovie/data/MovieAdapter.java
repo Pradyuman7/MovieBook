@@ -14,8 +14,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.pd.nextmovie.R;
-import com.pd.nextmovie.data.HighlightRenderer;
-import com.pd.nextmovie.data.HighlightedResult;
 import com.pd.nextmovie.model.Movie;
 
 import java.util.Collection;
@@ -28,7 +26,7 @@ class MovieAdapter extends ArrayAdapter<HighlightedResult<Movie>> {
     private final HighlightRenderer highlightRenderer;
     private ImageLoader imageLoader;
 
-    public MovieAdapter(final Context context, int resource) {
+    MovieAdapter(final Context context, int resource) {
         super(context, resource);
         this.context = context;
 
@@ -51,13 +49,14 @@ class MovieAdapter extends ArrayAdapter<HighlightedResult<Movie>> {
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         View cell = convertView;
+
         if (cell == null) {
             cell = LayoutInflater.from(context).inflate(R.layout.cell_movie, parent, false);
         }
 
-        ImageView posterImageView = (ImageView) cell.findViewById(R.id.imageview_poster);
-        TextView titleTextView = (TextView) cell.findViewById(R.id.textview_title);
-        TextView yearTextView = (TextView) cell.findViewById(R.id.textview_year);
+        ImageView posterImageView = cell.findViewById(R.id.imageview_poster);
+        TextView titleTextView = cell.findViewById(R.id.textview_title);
+        TextView yearTextView = cell.findViewById(R.id.textview_year);
 
         HighlightedResult<Movie> result = getItem(position);
 

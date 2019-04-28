@@ -17,7 +17,6 @@ public class RecommendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend);
 
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
