@@ -1,6 +1,6 @@
 # Next-Movie
 
-[![Next Movie](https://img.shields.io/badge/Pradyuman7-Next_Movie-red.svg?style=plastic)](https://github.com/Pradyuman7/Next-Movie)
+[![Next Movie](https://img.shields.io/badge/Pradyuman7-Next_Movie-seagreen.svg?style=plastic)](https://github.com/Pradyuman7/Next-Movie)
 
 An android app that lets you search from a big database of movies and their cast, and recommends movies according to your taste
 
@@ -27,4 +27,5 @@ This exact problem is what I am trying to target and solve through this app.
 
 
 ## Screenshots
-![Screenshot 2019-04-27 at 9 05 53 AM](https://user-images.githubusercontent.com/41565823/56846155-c4263980-68cb-11e9-96b8-9aa842bdc025.png)
+![Screenshot 2019-04-28 at 7 57 00 AM](https://user-images.githubusercontent.com/41565823/56859436-390c7880-698b-11e9-8f82-2aa8317320dd.png)
+
