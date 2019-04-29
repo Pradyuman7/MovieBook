@@ -24,6 +24,12 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
             <include layout="@layout/searchbox"
                 android:id="@+id/include_searchbox"/>
         </android.support.v7.widget.Toolbar>

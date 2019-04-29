@@ -66,14 +66,40 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        TextView forgotPassword = findViewById(R.id.forgot_password);
-        Button signUp = findViewById(R.id.signup);
-        Button signIn = findViewById(R.id.signin);
+        final TextView forgotPassword = findViewById(R.id.forgot_password);
+        final TextView back = findViewById(R.id.back);
+        final SignInButtonImpl register = findViewById(R.id.GButton1);
+        final Button signUp = findViewById(R.id.signup);
+        final Button signIn = findViewById(R.id.signin);
+
+        back.setVisibility(View.GONE);
+        register.setVisibility(View.GONE);
 
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChocoBar.builder().setActivity(RegisterActivity.this).setText("Try signing in with Google").centerText().setDuration(ChocoBar.LENGTH_SHORT).setBackgroundColor(Color.TRANSPARENT).build().show();
+                email.setVisibility(View.GONE);
+                password.setVisibility(View.GONE);
+                signIn.setVisibility(View.GONE);
+                signUp.setVisibility(View.GONE);
+                forgotPassword.setVisibility(View.GONE);
+
+                register.setVisibility(View.VISIBLE);
+                back.setVisibility(View.VISIBLE);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                email.setVisibility(View.VISIBLE);
+                password.setVisibility(View.VISIBLE);
+                signIn.setVisibility(View.VISIBLE);
+                signUp.setVisibility(View.VISIBLE);
+                forgotPassword.setVisibility(View.VISIBLE);
+
+                register.setVisibility(View.GONE);
+                back.setVisibility(View.GONE);
             }
         });
 
@@ -194,7 +220,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        SignInButtonImpl register = findViewById(R.id.GButton1);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

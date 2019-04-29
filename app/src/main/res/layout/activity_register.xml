@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
+    android:animateLayoutChanges="true"
     android:background="@drawable/wall"
     tools:context=".activities.RegisterActivity">
 
@@ -151,6 +152,17 @@
             android:text="@string/sign_in_with_google"
             android:textColor="#cdc8c9"
             android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/calibri"
+            android:text="@string/back"
+            android:textAlignment="center"
+            android:textColor="#96ffffff"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
