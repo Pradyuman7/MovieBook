@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.algolia.instantsearch.core.helpers.Searcher;
+import com.algolia.instantsearch.core.model.AlgoliaResultsListener;
+import com.algolia.instantsearch.core.model.SearchResults;
 import com.algolia.instantsearch.ui.helpers.InstantSearch;
 import com.algolia.instantsearch.ui.viewmodels.SearchBoxViewModel;
 import com.algolia.instantsearch.ui.views.SearchBox;
@@ -53,6 +55,8 @@ public abstract class MoviesActivity extends AppCompatActivity {
         Searcher.destroyAll();
         searcherMovies = Searcher.create(ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_MOVIES);
         searcherActors = Searcher.create(ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_ACTORS);
+
+
     }
 
     @Override
