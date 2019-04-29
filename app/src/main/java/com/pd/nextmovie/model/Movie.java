@@ -6,6 +6,11 @@ public class Movie {
     private int rating;
     private int year;
 
+    public Movie(String title, String image){
+        this.title = title;
+        this.image = image;
+    }
+
     public Movie(String title, String image, int rating, int year) {
         this.title = title;
         this.image = image;

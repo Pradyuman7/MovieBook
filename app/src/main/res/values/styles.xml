@@ -23,6 +23,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/calibri</item>
+    </style>
+
     <style name="EditScreenTextInputLayoutStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorControlNormal">@color/textInputLayout</item>
         <item name="colorControlActivated">@color/textInputLayout</item>
