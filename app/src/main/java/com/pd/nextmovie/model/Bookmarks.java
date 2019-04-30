@@ -39,12 +39,6 @@ public class Bookmarks {
         return bookmarkedMovies.get(position);
     }
 
-//    public ArrayList<Movie> getBookmarkedMoviesFromDatabase(){
-//        final
-//
-//
-//    }
-
     public void addBookmarksToDatabase(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
         reference.child("bookmarks").setValue(bookmarkedMovies);
