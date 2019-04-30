@@ -1,6 +1,6 @@
-# Next-Movie
+# MovieBook
 
-[![Next Movie](https://img.shields.io/badge/Pradyuman7-Next_Movie-seagreen.svg?style=plastic)](https://github.com/Pradyuman7/Next-Movie)
+[![MovieBook](https://img.shields.io/badge/Pradyuman7-MovieBook-seagreen.svg?style=flat)](https://github.com/Pradyuman7/MovieBook)
 
 An android app that lets you search from a big database of movies and their cast, and recommends movies according to your taste
 
@@ -12,11 +12,14 @@ An android app that lets you search from a big database of movies and their cast
 </p>
 
 
-## Currently completed
-- Interactive UI
-- Instant search for movies and cast
+## Completed Features
+- Instant search for movies and cast from app itself
+- Interactive and clean UI
+- Simple login with email, password or via your Google account
+- Bookmark your favourite movies or ones you want to watch and get them seperately in bookmark section
+- Simple tab layout of movies, cast and recommended movies for seamless UX
 
-## Currently working on
+## Features under work
 - Movie recommendation
 - Movie taste recognition
 
@@ -32,7 +35,7 @@ This exact problem is what I am trying to target and solve through this app.
 ![2019-04-29-3](https://user-images.githubusercontent.com/41565823/56885730-734e4680-6a6d-11e9-8ea6-4a2b210a88ec.jpg)
 ![2019-04-29](https://user-images.githubusercontent.com/41565823/56940998-e7422a80-6b11-11e9-9324-b0bfc050d40e.jpg)
 ![2019-04-29-2](https://user-images.githubusercontent.com/41565823/56940999-e7422a80-6b11-11e9-9339-09c0f9b5731a.jpg)
-
+![2019-04-30](https://user-images.githubusercontent.com/41565823/56959096-98fe4d00-6b4c-11e9-8db7-a0ca7158d26c.jpg)
 
 
 
