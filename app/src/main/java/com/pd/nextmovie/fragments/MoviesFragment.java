@@ -42,23 +42,9 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             public void onItemClick(RecyclerView recyclerView, int position, View v) {
                 JSONObject jsonObject = hits.get(position);
 
-                Log.d("Clicked_object: ",jsonObject.toString());
+                //Log.d("Clicked_object: ",jsonObject.toString());
 
-//                ChocoBar.builder().setBackgroundColor(Color.parseColor("#00bfff"))
-//                        .setTextSize(18)
-//                        .setTextColor(Color.parseColor("#FFFFFF"))
-//                        .setTextTypefaceStyle(Typeface.ITALIC)
-//                        .setText("This is a custom Chocobar")
-//                        .setMaxLines(4)
-//                        .centerText()
-//                        .setActionText("ChocoBar")
-//                        .setActionTextColor(Color.parseColor("#66FFFFFF"))
-//                        .setActionTextSize(20)
-//                        .setIcon(R.drawable.common_full_open_on_phone)
-//                        .setActivity(MoviesFragment.this.getActivity())
-//                        .setDuration(ChocoBar.LENGTH_INDEFINITE)
-//                        .build()
-//                        .show();
+
 
                 try {
                     Log.d("Clicked","Clicked on the hit "+jsonObject.getString("title"));
@@ -90,7 +76,7 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                             .setActionClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-
+                                    // logic for bookmarking movies
                                 }
                             })
                             .setActionTextColor(Color.parseColor("#66FFFFFF"))
