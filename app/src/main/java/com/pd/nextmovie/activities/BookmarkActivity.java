@@ -1,21 +1,133 @@
 package com.pd.nextmovie.activities;
 
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
+import com.pd.nextmovie.model.Bookmarks;
+import com.pd.nextmovie.model.Movie;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class BookmarkActivity extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmark);
+
+        final ListView bookmarkList = findViewById(R.id.bookmarkList);
+        final ArrayList<Movie> bookmarks = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.child("bookmarks").getChildren()){
+                    String title = (String) ds.child("title").getValue();
+                    String image = (String) ds.child("image").getValue();
+                    long year = (long) ds.child("year").getValue();
+                    long rating = (long) ds.child("rating").getValue();
+
+                    ArrayList<String> genres = new ArrayList<>();
+
+                    for(DataSnapshot genreDS : ds.child("genre").getChildren()){
+                        genres.add((String) genreDS.getValue());
+                    }
+
+                    Movie movie = new Movie(title,image);
+                    movie.setGenre(genres);
+                    movie.setRating((int) rating);
+                    movie.setYear((int) year);
+
+                    Log.d("movie",movie.toString());
+
+                    bookmarks.add(movie);
+
+                    ArrayList<String> movieTitles = new ArrayList<>();
+                    ArrayList<String> moviePosterUrl = new ArrayList<>();
+
+                    Log.d("movieList ",bookmarks.toString());
+
+                    for (Movie movie1 : bookmarks) {
+                        movieTitles.add(movie1.getTitle());
+                        moviePosterUrl.add(movie1.getImage());
+
+                        Log.d("added_movie", "success");
+                    }
+
+                    ArrayList<HashMap<String, String>> bookmarkMap = new ArrayList<>();
+
+                    for (int i = 0; i < bookmarks.size(); i++) {
+                        HashMap<String, String> hm = new HashMap<>();
+
+                        hm.put("listview_item_title", movieTitles.get(i));
+                        hm.put("listview_image", moviePosterUrl.get(i));
+
+                        bookmarkMap.add(hm);
+
+                        Log.d("movie_hashmap_array", "success");
+                    }
+
+                    String[] from = {"listview_image", "listview_item_title", "listview_item_short_description"};
+                    int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
+
+                    SimpleAdapter.ViewBinder viewBinder = new SimpleAdapter.ViewBinder() {
+                        @Override
+                        public boolean setViewValue(View view, Object data, String textRep) {
+                            if (view.getId() == R.id.listview_item_title) {
+                                ((TextView) view).setText((String) data);
+                                return true;
+                            } else if (view.getId() == R.id.listview_image) {
+                                if (!data.equals("none")) {
+                                    Glide.with(BookmarkActivity.this).load(data).into((ImageView) view);
+                                }
+                                return true;
+                            } else if (view.getId() == R.id.listview_item_short_description) {
+                                ((TextView) view).setText((String) data);
+                                return true;
+                            }
+
+                            return false;
+                        }
+                    };
+
+                    SimpleAdapter simpleAdapter = new SimpleAdapter(BookmarkActivity.this, bookmarkMap, R.layout.activity_list_view, from, to);
+                    simpleAdapter.setViewBinder(viewBinder);
+
+                    bookmarkList.setAdapter(simpleAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DatabaseError: ",databaseError.toString());
+            }
+        });
 
     }
 

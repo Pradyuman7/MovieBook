@@ -28,6 +28,10 @@ public class Bookmarks {
         bookmarkedMovies.add(movie);
     }
 
+    public ArrayList<Movie> getBookmarkedMovies(){
+        return bookmarkedMovies;
+    }
+
     public Movie getMovieAtPosition(int position){
         if(position > bookmarkedMovies.size() || position < 0)
             return null;
@@ -35,31 +39,14 @@ public class Bookmarks {
         return bookmarkedMovies.get(position);
     }
 
-    public ArrayList<String> getBookmarkedMoviesFromDatabase(){
-        final ArrayList<String> bookmarks = new ArrayList<>();
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
-
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.child("bookmarks").getChildren()){
-                    bookmarks.add(Objects.requireNonNull(ds.getValue()).toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("DatabaseError: ",databaseError.toString());
-            }
-        });
-
-        return bookmarks;
-    }
+//    public ArrayList<Movie> getBookmarkedMoviesFromDatabase(){
+//        final
+//
+//
+//    }
 
     public void addBookmarksToDatabase(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
-
         reference.child("bookmarks").setValue(bookmarkedMovies);
     }
 
