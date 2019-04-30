@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.algolia.instantsearch.ui.utils.ItemClickSupport;
 import com.algolia.instantsearch.ui.views.Hits;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
@@ -21,9 +22,11 @@ import com.pd.nextmovie.asynctask.GetImageFromURI;
 import com.pd.nextmovie.model.Bookmarks;
 import com.pd.nextmovie.model.Movie;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragment {
@@ -48,7 +51,7 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             public void onItemClick(RecyclerView recyclerView, int position, View v) {
                 JSONObject jsonObject = hits.get(position);
 
-                Log.d("Clicked_object: ",jsonObject.toString());
+                //Log.d("Clicked_object: ",jsonObject.toString());
 
 
 
@@ -66,40 +69,63 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                 JSONObject jsonObject = hits.get(position);
 
                 try {
-                    final String movieTitle = jsonObject.getString("title");
-                    final String image = jsonObject.getString("image");
-                    final int rating = jsonObject.getInt("rating");
-                    final int year = jsonObject.getInt("year");
 
-                    Drawable drawable = new GetImageFromURI().execute(image).get();
+                    if(FirebaseAuth.getInstance().getUid() == null){
+                        ChocoBar.builder().setActivity(MoviesFragment.this.getActivity())
+                                .setText("Please login first by clicking on the bookmark button")
+                                .setDuration(ChocoBar.LENGTH_SHORT)
+                                .orange()
+                                .show();
+                    }
+                    else {
+                        final String movieTitle = jsonObject.getString("title");
+                        final String image = jsonObject.getString("image");
+                        final int rating = jsonObject.getInt("rating");
+                        final int year = jsonObject.getInt("year");
+                        final JSONArray genre = jsonObject.getJSONArray("genre");
 
-                    ChocoBar.builder().setBackgroundColor(Color.parseColor("#000000"))
-                            .setTextSize(15)
-                            .setTextColor(Color.parseColor("#FFFFFF"))
-                            .setTextTypefaceStyle(Typeface.ITALIC)
-                            .setText("Bookmarked "+movieTitle)
-                            .setMaxLines(5)
-                            .centerText()
-                            .setActionText("OK")
-                            .setActionClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Movie movie = new Movie(movieTitle, image);
-                                    movie.setRating(rating);
-                                    movie.setYear(year);
+                        //Log.d("genre: ",genre.toString());
 
-                                    bookmarks.addMovie(movie);
-                                    bookmarks.addBookmarksToDatabase();
-                                }
-                            })
-                            .setActionTextColor(Color.parseColor("#66FFFFFF"))
-                            .setActionTextSize(20)
-                            .setIcon(drawable)
-                            .setActivity(MoviesFragment.this.getActivity())
-                            .setDuration(ChocoBar.LENGTH_INDEFINITE)
-                            .build()
-                            .show();
+                        Drawable drawable = new GetImageFromURI().execute(image).get();
 
+                        ChocoBar.builder().setBackgroundColor(Color.parseColor("#000000"))
+                                .setTextSize(15)
+                                .setTextColor(Color.parseColor("#FFFFFF"))
+                                .setTextTypefaceStyle(Typeface.ITALIC)
+                                .setText("Bookmarked " + movieTitle)
+                                .setMaxLines(5)
+                                .centerText()
+                                .setActionText("OK")
+                                .setActionClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Movie movie = new Movie(movieTitle, image);
+                                        ArrayList<String> movieGenre = new ArrayList<>();
+
+                                        for(int i=0;i<genre.length();i++){
+                                            try {
+                                                movieGenre.add(genre.getString(i));
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+
+                                        movie.setRating(rating);
+                                        movie.setYear(year);
+                                        movie.setGenre(movieGenre);
+
+                                        bookmarks.addMovie(movie);
+                                        bookmarks.addBookmarksToDatabase();
+                                    }
+                                })
+                                .setActionTextColor(Color.parseColor("#66FFFFFF"))
+                                .setActionTextSize(20)
+                                .setIcon(drawable)
+                                .setActivity(MoviesFragment.this.getActivity())
+                                .setDuration(ChocoBar.LENGTH_INDEFINITE)
+                                .build()
+                                .show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
