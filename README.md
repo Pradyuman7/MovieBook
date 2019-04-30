@@ -1,6 +1,6 @@
-# Next-Movie
+# MovieBook
 
-[![Next Movie](https://img.shields.io/badge/Pradyuman7-Next_Movie-seagreen.svg?style=plastic)](https://github.com/Pradyuman7/Next-Movie)
+[![MovieBook](https://img.shields.io/badge/Pradyuman7-MovieBook-seagreen.svg?style=flat)](https://github.com/Pradyuman7/MovieBook)
 
 An android app that lets you search from a big database of movies and their cast, and recommends movies according to your taste
 
