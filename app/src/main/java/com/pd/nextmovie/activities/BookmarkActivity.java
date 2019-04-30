@@ -10,12 +10,12 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pd.nextmovie.R;
 
-public class RecommendActivity extends AppCompatActivity {
+public class BookmarkActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommend);
+        setContentView(R.layout.activity_bookmark);
 
     }
 
@@ -29,7 +29,7 @@ public class RecommendActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(RecommendActivity.this, MoviesActivity.MovieTabActivity.class));
+                startActivity(new Intent(BookmarkActivity.this, MoviesActivity.MovieTabActivity.class));
                 finish();
                 finish();
                 return true;

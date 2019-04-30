@@ -19,8 +19,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.algolia.instantsearch.core.helpers.Searcher;
-import com.algolia.instantsearch.core.model.AlgoliaResultsListener;
-import com.algolia.instantsearch.core.model.SearchResults;
 import com.algolia.instantsearch.ui.helpers.InstantSearch;
 import com.algolia.instantsearch.ui.viewmodels.SearchBoxViewModel;
 import com.algolia.instantsearch.ui.views.SearchBox;
@@ -71,7 +69,7 @@ public abstract class MoviesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(firebaseAuth.getCurrentUser() != null)
-                    startActivity(new Intent(MoviesActivity.this, RecommendActivity.class));
+                    startActivity(new Intent(MoviesActivity.this, BookmarkActivity.class));
 
                 else
                     startActivity(new Intent(MoviesActivity.this, RegisterActivity.class));
@@ -174,6 +172,7 @@ public abstract class MoviesActivity extends AppCompatActivity {
                 super(fm);
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public Fragment getItem(int position) {
                 // getItem is called to instantiate the fragment for the given page.

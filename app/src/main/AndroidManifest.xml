@@ -32,7 +32,7 @@
             android:name=".activities.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".activities.RecommendActivity"></activity>
+        <activity android:name=".activities.BookmarkActivity"></activity>
     </application>
 
 </manifest>
