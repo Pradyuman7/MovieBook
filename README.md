@@ -13,7 +13,9 @@ An android app that lets you search from a big database of movies and their cast
 
 
 ## Completed Features
-- Instant search for movies and cast from app itself
+- Instant search for movies and cast
+- Movies with their title, movie image, year released and rating listed
+- Actors and actresses with their names and images listed
 - Interactive and clean UI
 - Simple login with email, password or via your Google account
 - Bookmark your favourite movies or ones you want to watch and get them seperately in bookmark section
