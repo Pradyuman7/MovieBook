@@ -23,10 +23,11 @@ public class GetImageFromURI extends AsyncTask<String, Void, Drawable> {
             connection.connect();
 
             InputStream input = connection.getInputStream();
-
             Bitmap bitmap = BitmapFactory.decodeStream(input);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 300, 500, true);
 
             return new BitmapDrawable(bitmap);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -19,6 +19,7 @@ import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
 import com.pd.nextmovie.asynctask.GetImageFromURI;
 import com.pd.nextmovie.model.Bookmarks;
+import com.pd.nextmovie.model.Movie;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,8 +27,13 @@ import org.json.JSONObject;
 import java.util.concurrent.ExecutionException;
 
 public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragment {
+
+    private Bookmarks bookmarks;
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public MoviesFragment() {
         super(R.layout.fragment_movies);
+        bookmarks = new Bookmarks();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -42,7 +48,7 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             public void onItemClick(RecyclerView recyclerView, int position, View v) {
                 JSONObject jsonObject = hits.get(position);
 
-                //Log.d("Clicked_object: ",jsonObject.toString());
+                Log.d("Clicked_object: ",jsonObject.toString());
 
 
 
@@ -60,8 +66,10 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                 JSONObject jsonObject = hits.get(position);
 
                 try {
-                    String movieTitle = jsonObject.getString("title");
-                    String image = jsonObject.getString("image");
+                    final String movieTitle = jsonObject.getString("title");
+                    final String image = jsonObject.getString("image");
+                    final int rating = jsonObject.getInt("rating");
+                    final int year = jsonObject.getInt("year");
 
                     Drawable drawable = new GetImageFromURI().execute(image).get();
 
@@ -69,14 +77,19 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                             .setTextSize(15)
                             .setTextColor(Color.parseColor("#FFFFFF"))
                             .setTextTypefaceStyle(Typeface.ITALIC)
-                            .setText("Do you want to bookmark "+movieTitle)
+                            .setText("Bookmarked "+movieTitle)
                             .setMaxLines(5)
                             .centerText()
                             .setActionText("OK")
                             .setActionClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    // logic for bookmarking movies
+                                    Movie movie = new Movie(movieTitle, image);
+                                    movie.setRating(rating);
+                                    movie.setYear(year);
+
+                                    bookmarks.addMovie(movie);
+                                    bookmarks.addBookmarksToDatabase();
                                 }
                             })
                             .setActionTextColor(Color.parseColor("#66FFFFFF"))

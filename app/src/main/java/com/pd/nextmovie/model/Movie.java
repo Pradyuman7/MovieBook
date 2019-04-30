@@ -1,10 +1,29 @@
 package com.pd.nextmovie.model;
 
+import java.util.ArrayList;
+
 public class Movie {
     private String title;
     private String image;
     private int rating;
     private int year;
+    private ArrayList<String> genre;
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public ArrayList<String> getGenre() {
+        return genre;
+    }
+
+    public void setGenre(ArrayList<String> genre) {
+        this.genre = genre;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     public Movie(String title, String image){
         this.title = title;
