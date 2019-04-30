@@ -2,7 +2,7 @@
 
 [![MovieBook](https://img.shields.io/badge/Pradyuman7-MovieBook-seagreen.svg?style=flat)](https://github.com/Pradyuman7/MovieBook)
 
-An android app that lets you search from a big database of movies and their cast, and recommends movies according to your taste
+An android app that lets you search for movies and their cast, and helps you discover your taste of movies
 
 <p align="center">
   <img width="250" height="250" src="https://user-images.githubusercontent.com/41565823/52389948-528dda80-2a96-11e9-900d-75d4ec0dbeaf.png">
