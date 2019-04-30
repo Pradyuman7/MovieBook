@@ -12,14 +12,14 @@ An android app that lets you search from a big database of movies and their cast
 </p>
 
 
-## Currently completed
+## Completed Features
 - Instant search for movies and cast from app itself
 - Interactive and clean UI
-- Simple login with enail, password or via your Google account
-- Bookmark your favourite movies or ones you want to watch and get them in bookmark section
+- Simple login with email, password or via your Google account
+- Bookmark your favourite movies or ones you want to watch and get them seperately in bookmark section
 - Simple tab layout of movies, cast and recommended movies for seamless UX
 
-## Currently working on
+## Features under work
 - Movie recommendation
 - Movie taste recognition
 
