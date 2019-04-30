@@ -135,7 +135,7 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                     e.printStackTrace();
                 }
 
-                return false;
+                return true;
             }
         });
 
