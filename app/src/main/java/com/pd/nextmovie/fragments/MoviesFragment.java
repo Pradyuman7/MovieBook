@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.algolia.instantsearch.ui.utils.ItemClickSupport;
 import com.algolia.instantsearch.ui.views.Hits;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
@@ -50,10 +51,52 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             @Override
             public void onItemClick(RecyclerView recyclerView, int position, View v) {
                 JSONObject jsonObject = hits.get(position);
+                String title;
+                String image;
+                String genre;
+                int year;
+                int rating;
+                double score;
+
+                try {
+                    title = jsonObject.getString("title");
+                    image = jsonObject.getString("image");
+
+                    JSONArray jsonArray = jsonObject.getJSONArray("genre");
+                    StringBuilder sb = new StringBuilder();
+                    for(int i=0;i<jsonArray.length();i++){
+                        sb.append(jsonArray.get(i)).append(", ");
+                    }
+
+                    genre = sb.toString();
+
+                    year = jsonObject.getInt("year");
+                    rating = jsonObject.getInt("rating");
+                    score = jsonObject.getDouble("score");
+
+                    Drawable drawable = new GetImageFromURI().execute(image).get();
+
+                    MaterialStyledDialog dialog = new MaterialStyledDialog.Builder(MoviesFragment.this.getContext())
+                            .setTitle(title)
+                            .setIcon(drawable)
+                            .setDescription("Released in "+year+", having MovieBook score of "+score+" and average rating of "+rating+" falling categories like "+genre)
+                            .build();
+
+                    dialog.show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
 
                 //Log.d("Clicked_object: ",jsonObject.toString());
 
                 // use a custom action box to show more details about the movie
+
+
 
                 try {
                     Log.d("Clicked","Clicked on the hit "+jsonObject.getString("title"));
