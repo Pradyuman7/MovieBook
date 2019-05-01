@@ -53,7 +53,7 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
 
                 //Log.d("Clicked_object: ",jsonObject.toString());
 
-
+                // use a custom action box to show more details about the movie
 
                 try {
                     Log.d("Clicked","Clicked on the hit "+jsonObject.getString("title"));
