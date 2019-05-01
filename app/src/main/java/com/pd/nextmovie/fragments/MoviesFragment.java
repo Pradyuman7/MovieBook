@@ -12,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.algolia.instantsearch.ui.utils.ItemClickSupport;
 import com.algolia.instantsearch.ui.views.Hits;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
@@ -27,6 +29,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -65,7 +70,10 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                     JSONArray jsonArray = jsonObject.getJSONArray("genre");
                     StringBuilder sb = new StringBuilder();
                     for(int i=0;i<jsonArray.length();i++){
-                        sb.append(jsonArray.get(i)).append(", ");
+                        if(i == jsonArray.length() - 1)
+                            sb.append(jsonArray.get(i)).append(".");
+                        else
+                            sb.append(jsonArray.get(i)).append(", ");
                     }
 
                     genre = sb.toString();
@@ -73,13 +81,18 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                     year = jsonObject.getInt("year");
                     rating = jsonObject.getInt("rating");
                     score = jsonObject.getDouble("score");
+                    //DecimalFormat dec = new DecimalFormat("#0.00");
+                    Double truncatedDouble = BigDecimal.valueOf(score)
+                            .setScale(3, RoundingMode.HALF_UP)
+                            .doubleValue();
 
                     Drawable drawable = new GetImageFromURI().execute(image).get();
 
                     MaterialStyledDialog dialog = new MaterialStyledDialog.Builder(MoviesFragment.this.getContext())
                             .setTitle(title)
                             .setIcon(drawable)
-                            .setDescription("Released in "+year+", having MovieBook score of "+score+" and average rating of "+rating+" falling categories like "+genre)
+                            .setDescription("Released in "+year+", having MovieBook score of "+rating+" and average rating of "+truncatedDouble+" falling in categories "+genre)
+                            .setPositiveText("OK")
                             .build();
 
                     dialog.show();
