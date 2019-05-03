@@ -12,8 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.afollestad.materialdialogs.DialogAction;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.algolia.instantsearch.ui.utils.ItemClickSupport;
 import com.algolia.instantsearch.ui.views.Hits;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
@@ -31,7 +29,6 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -81,21 +78,32 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                     year = jsonObject.getInt("year");
                     rating = jsonObject.getInt("rating");
                     score = jsonObject.getDouble("score");
-                    //DecimalFormat dec = new DecimalFormat("#0.00");
-                    Double truncatedDouble = BigDecimal.valueOf(score)
-                            .setScale(3, RoundingMode.HALF_UP)
-                            .doubleValue();
+                    Double truncatedDouble = BigDecimal.valueOf(score).setScale(3, RoundingMode.HALF_UP).doubleValue();
 
                     Drawable drawable = new GetImageFromURI().execute(image).get();
 
-                    MaterialStyledDialog dialog = new MaterialStyledDialog.Builder(MoviesFragment.this.getContext())
-                            .setTitle(title)
-                            .setIcon(drawable)
-                            .setDescription("Released in "+year+", having MovieBook score of "+rating+" and average rating of "+truncatedDouble+" falling in categories "+genre)
-                            .setPositiveText("OK")
-                            .build();
+                    if(!genre.contains(",")){
+                        MaterialStyledDialog dialog = new MaterialStyledDialog.Builder(MoviesFragment.this.getContext())
+                                .setTitle(title)
+                                .setIcon(drawable)
+                                .setDescription("Released in "+year+", having MovieBook score of "+rating+" and average rating of "
+                                        +truncatedDouble+" falling in category of "+genre)
+                                .setPositiveText("OK")
+                                .build();
 
-                    dialog.show();
+                        dialog.show();
+                    }
+                    else {
+                        MaterialStyledDialog dialog = new MaterialStyledDialog.Builder(MoviesFragment.this.getContext())
+                                .setTitle(title)
+                                .setIcon(drawable)
+                                .setDescription("Released in " + year + ", having MovieBook score of " + rating + " and average rating of "
+                                        + truncatedDouble + " falling in categories " + genre)
+                                .setPositiveText("OK")
+                                .build();
+
+                        dialog.show();
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
