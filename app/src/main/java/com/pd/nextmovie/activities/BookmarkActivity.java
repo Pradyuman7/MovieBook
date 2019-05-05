@@ -13,10 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ChasingDots;
+import com.github.ybq.android.spinkit.style.FoldingCube;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +46,10 @@ public class BookmarkActivity extends AppCompatActivity {
         final ListView bookmarkList = findViewById(R.id.bookmarkList);
         final ArrayList<Movie> bookmarks = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
+
+        final ProgressBar progressBar = findViewById(R.id.spin_kit);
+        Sprite threeBounce = new ThreeBounce();
+        progressBar.setIndeterminateDrawable(threeBounce);
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -118,6 +127,7 @@ public class BookmarkActivity extends AppCompatActivity {
                     simpleAdapter.setViewBinder(viewBinder);
 
                     bookmarkList.setAdapter(simpleAdapter);
+                    progressBar.setVisibility(View.GONE);
                 }
             }
 
