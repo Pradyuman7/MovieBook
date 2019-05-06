@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -14,10 +15,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
+import com.pd.nextmovie.model.Movie;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
@@ -29,9 +34,12 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("uesrs").child(FirebaseAuth.getInstance().getUid()).child("bookmarks");
+        ListView recommendedListview = view.findViewById(R.id.recommended);
+        ArrayList<Movie> recommendedMovies = new ArrayList<>();
 
-        final ArrayList<String> genres = new ArrayList<>();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("bookmarks");
+
+        final Set<String> genres = new HashSet<>();
         ArrayList<String> allGenres = new ArrayList<>();
 
         allGenres.add("Action");
@@ -67,6 +75,8 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                         genres.add(genreDS.getValue(String.class));
                     }
                 }
+
+                Log.d("genres", genres.toString());
             }
 
             @Override
@@ -74,6 +84,18 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                 Log.d("DatabaseError", databaseError.toString());
             }
         });
+
+        // do training of data
+
+
+
+        if(recommendedMovies.size() == 0){
+            ChocoBar.builder().setActivity(ForYouFragment.this.getActivity())
+                    .setText("Bookmark some movies of your choice to get recommendations")
+                    .setDuration(ChocoBar.LENGTH_LONG)
+                    .orange()
+                    .show();
+        }
 
     }
 }

@@ -19,8 +19,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.github.ybq.android.spinkit.sprite.Sprite;
-import com.github.ybq.android.spinkit.style.ChasingDots;
-import com.github.ybq.android.spinkit.style.FoldingCube;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -136,6 +134,15 @@ public class BookmarkActivity extends AppCompatActivity {
                 Log.d("DatabaseError: ",databaseError.toString());
             }
         });
+
+//        bookmarkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Object movie = adapterView.getAdapter().getItem(i);
+//
+//                work on this later
+//            }
+//        });
 
     }
 
