@@ -20,9 +20,18 @@ import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
 import com.pd.nextmovie.model.Movie;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
@@ -86,6 +95,9 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         });
 
         // do training of data
+
+//        ScriptEngine engine = new ScriptEngineManager().getEngineByName("rhino");
+//        InputStream inputStream = getResources().openRawResource(R.raw.brain);
 
 
 
