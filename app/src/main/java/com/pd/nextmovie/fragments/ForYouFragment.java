@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,11 +95,7 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             }
         });
 
-        // do training of data
-
-//        ScriptEngine engine = new ScriptEngineManager().getEngineByName("rhino");
-//        InputStream inputStream = getResources().openRawResource(R.raw.brain);
-
+        // do data working using brain.js and recommend-movie.js
 
 
         if(recommendedMovies.size() == 0){
