@@ -102,6 +102,7 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         // do data working using brain.js and recommend-movie.js
 
 
+
         if(recommendedMovies.size() == 0){
             ChocoBar.builder().setActivity(ForYouFragment.this.getActivity())
                     .setText("Bookmark some movies of your choice to get recommendations")
