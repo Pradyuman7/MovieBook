@@ -105,6 +105,7 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         if(recommendedMovies.size() == 0){
             ChocoBar.builder().setActivity(ForYouFragment.this.getActivity())
                     .setText("Bookmark some movies of your choice to get recommendations")
+                    .centerText()
                     .setDuration(ChocoBar.LENGTH_LONG)
                     .setActionText("OK")
                     .setActionTextColor(Color.parseColor("#66FFFFFF"))
