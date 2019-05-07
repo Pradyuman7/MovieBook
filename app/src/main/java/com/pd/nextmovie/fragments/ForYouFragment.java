@@ -1,5 +1,6 @@
 package com.pd.nextmovie.fragments;
 
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -49,8 +50,8 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid()).child("bookmarks");
 
-        final Set<String> genres = new HashSet<>();
-        ArrayList<String> allGenres = new ArrayList<>();
+        final Set<String> interestingGenres = new HashSet<>();
+        final Set<String> allGenres = new HashSet<>();
 
         allGenres.add("Action");
         allGenres.add("Adventure");
@@ -82,11 +83,14 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     for(DataSnapshot genreDS : ds.child("genre").getChildren()){
-                        genres.add(genreDS.getValue(String.class));
+                        String newGenre = genreDS.getValue(String.class);
+
+                        interestingGenres.add(newGenre);
+                        allGenres.add(newGenre);
                     }
                 }
 
-                Log.d("genres", genres.toString());
+                Log.d("genres", interestingGenres.toString());
             }
 
             @Override
@@ -102,6 +106,8 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             ChocoBar.builder().setActivity(ForYouFragment.this.getActivity())
                     .setText("Bookmark some movies of your choice to get recommendations")
                     .setDuration(ChocoBar.LENGTH_LONG)
+                    .setActionText("OK")
+                    .setActionTextColor(Color.parseColor("#66FFFFFF"))
                     .orange()
                     .show();
         }
