@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        useLibrary 'org.apache.http.legacy'
     }
     buildTypes {
         release {
@@ -39,7 +40,9 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.2.0'
     implementation 'io.apisense:rhino-android:1.0'
     implementation 'net.librec:librec-core:2.0.0'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.10'
     implementation group: 'org.encog', name: 'encog-core', version: '3.4'
+    implementation group: 'com.github.LiquidPlayer', name: 'LiquidCore', version: '0.5.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

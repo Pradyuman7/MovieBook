@@ -2,7 +2,6 @@ package com.pd.nextmovie.fragments;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,14 +16,9 @@ import com.algolia.instantsearch.ui.views.Hits;
 import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
-import com.pd.nextmovie.asynctask.GetImageFromURI;
-import com.pd.nextmovie.model.Movie;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class CastFragment extends MoviesActivity.MovieTabActivity.LayoutFragment {
     public CastFragment() {

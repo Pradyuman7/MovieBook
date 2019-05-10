@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,18 +21,17 @@ import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
 import com.pd.nextmovie.model.Movie;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.liquidplayer.javascript.JSContext;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
 
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
@@ -100,6 +98,10 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         });
 
         // do data working using brain.js and recommend-movie.js
+
+
+
+
 
 
 

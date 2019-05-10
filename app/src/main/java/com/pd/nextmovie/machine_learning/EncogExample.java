@@ -1,10 +1,8 @@
 package com.pd.nextmovie.machine_learning;
 
 import org.encog.Encog;
-import org.encog.engine.network.activation.ActivationFunction;
 import org.encog.engine.network.activation.ActivationReLU;
 import org.encog.engine.network.activation.ActivationSigmoid;
-import org.encog.ml.MLMethod;
 import org.encog.ml.data.MLData;
 import org.encog.ml.data.MLDataPair;
 import org.encog.ml.data.MLDataSet;
@@ -12,7 +10,6 @@ import org.encog.ml.data.basic.BasicMLDataSet;
 import org.encog.neural.networks.BasicNetwork;
 import org.encog.neural.networks.layers.BasicLayer;
 import org.encog.neural.networks.training.propagation.resilient.ResilientPropagation;
-import org.encog.neural.pattern.NeuralNetworkPattern;
 
 public class EncogExample {
 
