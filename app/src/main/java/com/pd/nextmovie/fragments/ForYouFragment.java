@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
+import com.pd.nextmovie.asynctask.GetRecommendations;
 import com.pd.nextmovie.model.Movie;
 
 import org.apache.http.HttpResponse;
@@ -32,6 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
@@ -98,11 +100,15 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         });
 
         // do data working using brain.js and recommend-movie.js
+        try {
+            String string = new GetRecommendations().execute().get();
+            Log.d("recommendation", string);
 
-
-
-
-
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
 
         if(recommendedMovies.size() == 0){
