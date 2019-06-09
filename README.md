@@ -24,6 +24,7 @@ An android app that lets you search for movies and their cast, and helps you dis
 ## Features under work
 - Movie recommendation
 - Movie taste recognition
+- Server for processing recommendations (maybe serverless solution)
 
 ## Idea
 
