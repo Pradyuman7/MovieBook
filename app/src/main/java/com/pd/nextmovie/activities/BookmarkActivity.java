@@ -146,7 +146,7 @@ public class BookmarkActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                HashMap<String,String> item = (HashMap<String, String>) bookmarkList.getItemAtPosition(i);
+                HashMap<String, String> item = (HashMap<String, String>) bookmarkList.getItemAtPosition(i);
 
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
                 ref.child("favoriteMovie").setValue(item);
@@ -178,8 +178,6 @@ public class BookmarkActivity extends AppCompatActivity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
     }
