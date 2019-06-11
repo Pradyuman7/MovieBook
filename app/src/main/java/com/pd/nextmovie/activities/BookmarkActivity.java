@@ -1,6 +1,9 @@
 package com.pd.nextmovie.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -26,12 +30,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
+import com.pd.nextmovie.asynctask.GetImageFromURI;
 import com.pd.nextmovie.model.Movie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class BookmarkActivity extends AppCompatActivity {
 
@@ -135,15 +142,46 @@ public class BookmarkActivity extends AppCompatActivity {
             }
         });
 
-//        bookmarkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Object movie = adapterView.getAdapter().getItem(i);
-//
-//                work on this later
-//            }
-//        });
+        bookmarkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                HashMap<String,String> item = (HashMap<String, String>) bookmarkList.getItemAtPosition(i);
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
+                ref.child("favoriteMovie").setValue(item);
+
+                Log.d("hashmap", item.toString());
+
+                try {
+                    Drawable drawable = new GetImageFromURI().execute(item.get("listview_image")).get();
+
+                    ChocoBar.builder().setBackgroundColor(Color.parseColor("#000000"))
+                            .setTextSize(18)
+                            .setTextColor(Color.parseColor("#FFFFFF"))
+                            .setTextTypefaceStyle(Typeface.ITALIC)
+                            .setText("Marked "+item.get("listview_item_title")+" as your favourite movie")
+                            .setMaxLines(4)
+                            .centerText()
+                            .setActionText("Ok")
+                            .setActionTextColor(Color.parseColor("#66FFFFFF"))
+                            .setActionTextSize(20)
+                            .setActionTextTypefaceStyle(Typeface.BOLD)
+                            .setIcon(drawable)
+                            .setActivity(BookmarkActivity.this)
+                            .setDuration(ChocoBar.LENGTH_INDEFINITE)
+                            .build()
+                            .show();
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
