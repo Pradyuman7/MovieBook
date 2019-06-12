@@ -29,6 +29,9 @@ An android app that lets you search for movies and their cast, and helps you dis
 ## Idea
 
 I am working on this app to explore machine learning and it's amazing use cases along with making something unique in the run. Currently we all face the scenario when we don't know which perfect movie do we need to watch to lift up our mood or kickstart the weekend.
+
+I know, I know you have Netflix and Amazon Prime and IMDb and other fantastic apps, but maybe someone might need this someday :)
+
 This exact problem is what I am trying to target and solve through this app.
 
 
