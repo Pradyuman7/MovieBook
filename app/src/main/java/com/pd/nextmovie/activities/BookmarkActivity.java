@@ -79,20 +79,20 @@ public class BookmarkActivity extends AppCompatActivity {
                     movie.setRating((int) rating);
                     movie.setYear((int) year);
 
-                    Log.d("movie",movie.toString());
+                    //Log.d("movie",movie.toString());
 
                     bookmarks.add(movie);
 
                     ArrayList<String> movieTitles = new ArrayList<>();
                     ArrayList<String> moviePosterUrl = new ArrayList<>();
 
-                    Log.d("movieList ",bookmarks.toString());
+                    //Log.d("movieList ",bookmarks.toString());
 
                     for (Movie movie1 : bookmarks) {
                         movieTitles.add(movie1.getTitle());
                         moviePosterUrl.add(movie1.getImage());
 
-                        Log.d("added_movie", "success");
+                       // Log.d("added_movie", "success");
                     }
 
                     ArrayList<HashMap<String, String>> bookmarkMap = new ArrayList<>();
@@ -105,7 +105,7 @@ public class BookmarkActivity extends AppCompatActivity {
 
                         bookmarkMap.add(hm);
 
-                        Log.d("movie_hashmap_array", "success");
+                        //Log.d("movie_hashmap_array", "success");
                     }
 
                     String[] from = {"listview_image", "listview_item_title", "listview_item_short_description"};
@@ -186,36 +186,7 @@ public class BookmarkActivity extends AppCompatActivity {
             }
         });
 
-        // recommendation system without using * actual * machine learning, trying to figure out how to do so
-        // algorithm:
-        // 1. go through the bookmarks and find genres that are common and store the common genre list
-        // 2. find movies with genre list much similar to the common list of the user to recommend movies
-        // 3. remove those movies that are already in the bookmark list
 
-        final Set<String> commonGenres = new HashSet<>(); // currently using set, but employ hashMap to find genres that are more common
-        assert FirebaseAuth.getInstance().getUid() != null;
-        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
-
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.child("bookmarks").getChildren()){
-                    for(DataSnapshot genreDS : ds.child("genres").getChildren()){
-                        String genre = (String) genreDS.getValue();
-
-                        commonGenres.add(genre);
-                    }
-                }
-
-                List<String> common = new ArrayList<>(commonGenres);
-                ref.child("liking").setValue(common);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("DatabaseError", databaseError.toString());
-            }
-        });
 
     }
 

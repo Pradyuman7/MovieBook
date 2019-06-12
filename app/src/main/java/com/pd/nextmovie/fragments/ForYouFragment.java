@@ -18,6 +18,9 @@ import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
         super(R.layout.fragment_for_you);
@@ -40,7 +43,15 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    // get liking list and then go through the genres of all movies
+
+                    List<String> commonList = new ArrayList<>();
+
+                    for(DataSnapshot ds : dataSnapshot.child("liking").getChildren()){
+                        String genre = (String) ds.getValue();
+                        commonList.add(genre);
+                    }
+
+                    //Log.d("commonList", commonList.toString());
                 }
 
                 @Override

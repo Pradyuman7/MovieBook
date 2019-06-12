@@ -16,6 +16,11 @@ import com.algolia.instantsearch.ui.utils.ItemClickSupport;
 import com.algolia.instantsearch.ui.views.Hits;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
@@ -30,6 +35,9 @@ import org.json.JSONObject;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragment {
@@ -48,6 +56,42 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         super.onViewCreated(view, savedInstanceState);
 
         final Hits hits = view.findViewById(R.id.hits_movies);
+
+        // recommendation system without using * actual * machine learning, trying to figure out how to do so
+        // algorithm:
+        // 1. go through the bookmarks and find genres that are common and store the common genre list
+        // 2. find movies with genre list much similar to the common list of the user to recommend movies
+        // 3. remove those movies that are already in the bookmark list
+
+        final Set<String> commonGenres = new HashSet<>(); // currently using set, but employ hashMap to find genres that are more common
+        assert FirebaseAuth.getInstance().getUid() != null;
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //Log.d("machine_learning","reaches here");
+
+                for(DataSnapshot ds : dataSnapshot.child("bookmarks").getChildren()){
+                    for(DataSnapshot genreDS : ds.child("genre").getChildren()){
+                        String genre = (String) genreDS.getValue();
+                        //Log.d("genre_added", genre);
+                        commonGenres.add(genre);
+                    }
+                }
+
+                List<String> common = new ArrayList<>(commonGenres);
+                //Log.d("list", common.toString());
+                ref.child("liking").setValue(common);
+
+                //Log.d("machine_learning","reaches end");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DatabaseError", databaseError.toString());
+            }
+        });
 
         hits.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -202,6 +246,8 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                 return true;
             }
         });
+
+
 
     }
 
