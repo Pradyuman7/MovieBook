@@ -37,7 +37,10 @@ import com.pd.nextmovie.model.Movie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 public class BookmarkActivity extends AppCompatActivity {
@@ -142,16 +145,16 @@ public class BookmarkActivity extends AppCompatActivity {
             }
         });
 
-        bookmarkList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        bookmarkList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 HashMap<String, String> item = (HashMap<String, String>) bookmarkList.getItemAtPosition(i);
 
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
                 ref.child("favoriteMovie").setValue(item);
 
-                Log.d("hashmap", item.toString());
+                //Log.d("hashmap", item.toString());
 
                 try {
                     Drawable drawable = new GetImageFromURI().execute(item.get("listview_image")).get();
@@ -178,8 +181,42 @@ public class BookmarkActivity extends AppCompatActivity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
+
+                return true;
             }
         });
+
+        // recommendation system without using * actual * machine learning, trying to figure out how to do so
+        // algorithm:
+        // 1. go through the bookmarks and find genres that are common and store the common genre list
+        // 2. find movies with genre list much similar to the common list of the user to recommend movies
+        // 3. remove those movies that are already in the bookmark list
+
+        final Set<String> commonGenres = new HashSet<>(); // currently using set, but employ hashMap to find genres that are more common
+        assert FirebaseAuth.getInstance().getUid() != null;
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.child("bookmarks").getChildren()){
+                    for(DataSnapshot genreDS : ds.child("genres").getChildren()){
+                        String genre = (String) genreDS.getValue();
+
+                        commonGenres.add(genre);
+                    }
+                }
+
+                List<String> common = new ArrayList<>(commonGenres);
+                ref.child("liking").setValue(common);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("DatabaseError", databaseError.toString());
+            }
+        });
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

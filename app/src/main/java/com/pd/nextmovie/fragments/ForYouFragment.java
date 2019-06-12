@@ -1,6 +1,5 @@
 package com.pd.nextmovie.fragments;
 
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -19,21 +17,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
-import com.pd.nextmovie.asynctask.GetRecommendations;
-import com.pd.nextmovie.model.Movie;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.liquidplayer.javascript.JSContext;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
     public ForYouFragment() {
@@ -44,6 +27,34 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if(FirebaseAuth.getInstance().getUid() == null){
+            ChocoBar.builder().setActivity(ForYouFragment.this.getActivity())
+                    .setText("Please sign in to get recommendations")
+                    .setDuration(ChocoBar.LENGTH_SHORT)
+                    .green()
+                    .show();
+        }
+        else {
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getUid());
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // get liking list and then go through the genres of all movies
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("DatabaseError", databaseError.toString());
+                }
+            });
+
+        }
+
+
+
+    }
+}
 
 //        ListView recommendedListview = view.findViewById(R.id.recommended);
 //        ArrayList<Movie> recommendedMovies = new ArrayList<>();
@@ -99,7 +110,7 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
 //            }
 //        });
 
-        // do data working using brain.js and recommend-movie.js
+// do data working using brain.js and recommend-movie.js
 //        try {
 //            String string = new GetRecommendations().execute().get();
 //            Log.d("recommendation", string);
@@ -121,6 +132,3 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
 //                    .orange()
 //                    .show();
 //        }
-
-    }
-}
