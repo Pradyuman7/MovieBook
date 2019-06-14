@@ -70,21 +70,16 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Log.d("machine_learning","reaches here");
 
                 for(DataSnapshot ds : dataSnapshot.child("bookmarks").getChildren()){
                     for(DataSnapshot genreDS : ds.child("genre").getChildren()){
                         String genre = (String) genreDS.getValue();
-                        //Log.d("genre_added", genre);
                         commonGenres.add(genre);
                     }
                 }
 
                 List<String> common = new ArrayList<>(commonGenres);
-                //Log.d("list", common.toString());
                 ref.child("liking").setValue(common);
-
-                //Log.d("machine_learning","reaches end");
             }
 
             @Override
@@ -246,9 +241,6 @@ public class MoviesFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                 return true;
             }
         });
-
-
-
     }
 
 }

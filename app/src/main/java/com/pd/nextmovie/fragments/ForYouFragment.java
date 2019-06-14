@@ -8,6 +8,9 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
 
+import com.algolia.instantsearch.core.helpers.Searcher;
+import com.algolia.instantsearch.ui.helpers.InstantSearch;
+import com.algolia.instantsearch.ui.views.Hits;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,10 +21,17 @@ import com.pd.chocobar.ChocoBar;
 import com.pd.nextmovie.R;
 import com.pd.nextmovie.activities.MoviesActivity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragmentWithoutAlgolia {
+
+    static final String ALGOLIA_APP_ID = "latency";
+    static final String ALGOLIA_INDEX_MOVIES = "movies";
+    static final String ALGOLIA_API_KEY = "d0a23086ed4be550f70be98c0acf7d74";
+
     public ForYouFragment() {
         super(R.layout.fragment_for_you);
     }
@@ -30,6 +40,8 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        final Hits hits = view.findViewById(R.id.hits_movies_recommended);
 
         if(FirebaseAuth.getInstance().getUid() == null){
             ChocoBar.builder().setActivity(ForYouFragment.this.getActivity())
@@ -44,14 +56,21 @@ public class ForYouFragment extends MoviesActivity.MovieTabActivity.LayoutFragme
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    List<String> commonList = new ArrayList<>();
+                    Set<String> commonList = new HashSet<>();
+                    //Map<String,Integer> comparedMovies = new HashMap<>(); // string will be the name, integer will be the number of genres common
 
                     for(DataSnapshot ds : dataSnapshot.child("liking").getChildren()){
                         String genre = (String) ds.getValue();
                         commonList.add(genre);
                     }
 
-                    //Log.d("commonList", commonList.toString());
+                    // now find movies with genres matching a lot with commonList
+//                    Searcher searcher = Searcher.create(ALGOLIA_APP_ID, ALGOLIA_API_KEY, ALGOLIA_INDEX_MOVIES);
+//                    hits.initWithSearcher(searcher);
+//
+//                    InstantSearch helper = new InstantSearch(ForYouFragment.this.getActivity(), searcher);
+//                    helper.search(commonList.toString());
+
                 }
 
                 @Override

@@ -8,18 +8,19 @@
     android:layout_height="match_parent"
     tools:context="com.pd.nextmovie.fragments$ForYouFragment">
 
-    <ListView
-        android:id="@+id/recommended"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        algolia:layout_constraintBottom_toBottomOf="parent"
-        algolia:layout_constraintEnd_toEndOf="parent"
-        algolia:layout_constraintStart_toStartOf="parent"
-        algolia:layout_constraintTop_toTopOf="parent" />
+    <com.algolia.instantsearch.ui.views.Hits
+        android:id="@+id/hits_movies_recommended"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        algolia:itemLayout="@layout/item_movie"
+        android:overScrollMode="always"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"/>
+
 </android.support.constraint.ConstraintLayout>
