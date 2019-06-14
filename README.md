@@ -26,9 +26,15 @@ An android app that lets you search for movies and their cast, and helps you dis
 - Movie taste recognition
 - Server for processing recommendations (maybe serverless solution)
 
+## Recommendation Engine
+For now rather that implementing the recommendation engine using machine learning, I am trying to implement it using simple logic and basic AI. The reason behind this is that machine learning recommendation engine can't process recommendations from inside the app and hence a server is needed. For setting up the server and processing recommendations, various changes are to be made. So for now I am working on logical AI based recommendation engine along with setting up of the server.
+
 ## Idea
 
 I am working on this app to explore machine learning and it's amazing use cases along with making something unique in the run. Currently we all face the scenario when we don't know which perfect movie do we need to watch to lift up our mood or kickstart the weekend.
+
+I know, I know you have Netflix and Amazon Prime and IMDb and other fantastic apps, but maybe someone might need this someday :)
+
 This exact problem is what I am trying to target and solve through this app.
 
 
