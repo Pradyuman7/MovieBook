@@ -23,6 +23,7 @@ An android app that lets you search for movies and their cast, and helps you dis
 
 ## Features under work
 - Movie recommendation without lagging the application
+- Seamless interaction between android and web moviebook
 - Movie taste recognition
 - Server for processing recommendations (maybe serverless solution)
 
