@@ -22,7 +22,7 @@ An android app that lets you search for movies and their cast, and helps you dis
 - Simple tab layout of movies, cast and recommended movies for seamless UX
 
 ## Features under work
-- Movie recommendation
+- Movie recommendation without lagging the application
 - Movie taste recognition
 - Server for processing recommendations (maybe serverless solution)
 
